@@ -53,7 +53,7 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as out_file:
             resp.raise_for_status()
                     
             # 内容有效性检查（至少包含10个可打印字符，且不包含“DOMAIN”字符串）
-            if len(resp.text.strip()) < 10 or "DOMAIN" in resp.text:
+            if len(resp.text.strip()) < 10 or "DOMAIN" in resp.text or "port" in resp.text or "proxies" in resp.text:
                 raise ValueError("内容过短或包含DOMAIN字符串")
                 
             # 编码检测
