@@ -9,7 +9,7 @@ headers = {
 # 配置参数
 MAX_SUCCESS = 20  # 需要获取的有效内容数量
 TIMEOUT = 15      # 单次请求超时时间（秒）
-OUTPUT_FILE = 'top50_valid_content.txt'
+OUTPUT_FILE = 'top20_valid_content.txt'
 
 def is_valid_url(url):
     """验证URL格式是否合法"""
@@ -59,10 +59,10 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as out_file:
             resp.encoding = resp.apparent_encoding
             
             # 写入文件
-            out_file.write(f"\n\n{'=' * 50}\n")
+            out_file.write(f"\n\n{'=' * 20}\n")
             out_file.write(f"# 成功序号: {success_count+1} | 原始序号: {raw_urls.index(url)+1}\n")
             out_file.write(f"# URL: {url}\n")
-            out_file.write(f"{'=' * 50}\n\n")
+            out_file.write(f"{'=' * 20}\n\n")
             out_file.write(resp.text)
             
             success_count += 1
