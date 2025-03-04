@@ -1,8 +1,10 @@
-name: Collect Content Daily
+name: Collect
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'collect.py'
   schedule:
     - cron: '0 0/3 * * *'  # 每天UTC时间00:00自动运行
 
