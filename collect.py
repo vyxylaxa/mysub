@@ -62,7 +62,7 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as out_file:
             
             # 写入文件
             #out_file.write(f"\n\n{'=' * 20}\n")
-            out_file.write(f"\n\n")
+            #out_file.write(f"\n\n")
             #out_file.write(f"# 成功序号: {success_count+1} | 原始序号: {raw_urls.index(url)+1}\n")
             #out_file.write(f"# URL: {url}\n")
             #out_file.write(f"{'=' * 20}\n\n")
