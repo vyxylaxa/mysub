@@ -43,6 +43,7 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as out_file:
             break
             
         processed_count += 1
+        
         try:
             # 显示智能进度（每10个或最后5个显示）
             if processed_count % 10 == 0 or (MAX_SUCCESS - success_count) <= 5:
@@ -50,10 +51,10 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as out_file:
             
             resp = requests.get(url, headers=headers, timeout=TIMEOUT)
             resp.raise_for_status()
-            
-            # 内容有效性检查（至少包含10个可打印字符）
-            if len(resp.text.strip()) < 10:
-                raise ValueError("内容过短")
+                    
+            # 内容有效性检查（至少包含10个可打印字符，且不包含“DOMAIN”字符串）
+            if len(resp.text.strip()) < 10 or "DOMAIN" in resp.text:
+                raise ValueError("内容过短或包含DOMAIN字符串")
                 
             # 编码检测
             resp.encoding = resp.apparent_encoding
