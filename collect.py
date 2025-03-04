@@ -1,5 +1,6 @@
 import requests
 from urllib.parse import urlparse
+import base64
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
@@ -65,8 +66,18 @@ with open(OUTPUT_FILE, 'w', encoding='utf-8') as out_file:
             #out_file.write(f"# 成功序号: {success_count+1} | 原始序号: {raw_urls.index(url)+1}\n")
             #out_file.write(f"# URL: {url}\n")
             #out_file.write(f"{'=' * 20}\n\n")
-            out_file.write(resp.text)
-            
+            #out_file.write(resp.text)
+            # 在写入文件之前，对 resp.text 进行 Base64 解码
+            try:
+                decoded_content = base64.b64decode(resp.text).decode('utf-8')  # 解码并转换为字符串
+                out_file.write(decoded_content)  # 写入解码后的内容
+            except base64.binascii.Error as e:
+                print(f"Base64 解码失败: {e}")
+                continue  # 跳过解码失败的网页
+            except UnicodeDecodeError as e:
+                print(f"解码后内容无法转换为 UTF-8 字符串: {e}")
+                continue  # 跳过无法解码的网页            
+                        
             success_count += 1
             
         except requests.exceptions.RequestException as e:
