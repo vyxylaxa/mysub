@@ -13,6 +13,10 @@ jobs:
       contents: write  # 关键权限设置
     
     steps:
+
+    - name: Reset git cache
+      run: git reset --hard HEAD
+      
     - name: Checkout code
       uses: actions/checkout@v4
       with:
