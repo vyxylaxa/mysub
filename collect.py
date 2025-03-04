@@ -40,12 +40,3 @@ with open(output_filename, 'w', encoding='utf-8') as out_file:
             print(f"处理时发生未知错误: {e}")
 
 print(f"所有内容已保存到 {output_filename}")
-
-# 在原有代码最后追加以下内容
-if os.getenv('GITHUB_ACTIONS') == 'true':
-    print("检测到在GitHub Actions环境中运行，自动提交结果...")
-    os.system('git config --global user.name "GitHub Actions"')
-    os.system('git config --global user.email "actions@github.com"')
-    os.system('git add combined_content.txt')
-    os.system('git commit -m "Auto update collected content"')
-    os.system('git push')
