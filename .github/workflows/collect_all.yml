@@ -30,8 +30,8 @@ jobs:
     - name: Install dependencies
       run: pip install requests
 
-    - name: Run collection script
-      run: python collect.py
+    - name: Run collection_all script
+      run: python collect_all.py
 
     - name: Commit and push changes
       env:
