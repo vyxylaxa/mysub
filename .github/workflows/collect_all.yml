@@ -48,7 +48,7 @@ jobs:
         
         # 提交变更
         git add valid_content_all.txt
-        git diff --quiet && git diff --staged --quiet || git commit -m "Auto update collected content"
+        git diff --quiet && git diff --staged --quiet || git commit -m "Auto update all collected content"
         
         # 强制推送变更
         git push origin main -f
