@@ -7,7 +7,7 @@ on:
     paths:
       - 'collect_all.py'
   schedule:
-    - cron: '0 0/3 * * *'  # 每天UTC时间00:00自动运行
+    - cron: '0 */5 * * *'  # 每天UTC时间00:00自动运行
 
 jobs:
   collect:
